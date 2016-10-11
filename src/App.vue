@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-  import store from '../vuex/store'
+  import store from './../vuex/store'
   import { Tabbar, TabbarItem, Loading, ViewBox, XHeader } from 'vux/src/components'
 
   export default {
@@ -44,8 +44,8 @@
       vuex: {
       getters: {
         route: (state) => state.route,
-          isLoading: (state) => state.isLoading,
-          direction: (state) => state.direction
+        isLoading: (state) => state.isLoading,
+        direction: (state) => state.direction
       }
     },
     data () {
@@ -63,6 +63,7 @@
     },
     computed: {
       leftOptions () {
+        debugger;
         return {
           showBack: this.route.path !== '/'
         }
