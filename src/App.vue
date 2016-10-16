@@ -7,20 +7,21 @@
         <x-header :left-options="leftOptions" :transition="headerTransition" :title="title" @on-click-title="scrollTop"></x-header>
       </div>
       <!--default slot-->
-      <router-view
-        :transition="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')"
-      ></router-view>
+      <!--<transition  :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">-->
+        <router-view></router-view>
+      <!--</transition>-->
+
       <!--bottom slot-->
-      <tabbar class="vux-demo-tabbar" icon-class="vux-center" v-show="!isTabbarDemo" slot="bottom">
-        <tabbar-item v-link="{path:'/'}" :selected="route.path === '/'">
+      <tabbar class="vux-demo-tabbar" icon-class="vux-center" slot="bottom">
+        <tabbar-item v-link="{path:'/'}" >
           <span class="demo-icon-22 vux-demo-tabbar-icon-home" slot="icon">&#xe637;</span>
           <span slot="label">Home</span>
         </tabbar-item>
-        <tabbar-item v-link="{path:'/personalinfo'}" :selected="isDemo" badge="9">
+        <tabbar-item v-link="{path:'/personalinfo'}"  badge="9">
           <span class="demo-icon-22" slot="icon">&#xe633;</span>
           <span slot="label"><span v-if="componentName" class="vux-demo-tabbar-component">{{componentName}}</span><span v-else>Demos</span></span>
         </tabbar-item>
-        <tabbar-item v-link="{path:'/'}" :selected="route.path === '/'" show-dot>
+        <tabbar-item v-link="{path:'/'}"  show-dot>
           <span class="demo-icon-22" slot="icon">&#xe630;</span>
           <span slot="label">Donate</span>
         </tabbar-item>
@@ -63,28 +64,20 @@
     },
     computed: {
       leftOptions () {
-        debugger;
         return {
-          showBack: this.route.path !== '/'
+          showBack: true
         }
       },
       headerTransition () {
         return this.direction === 'forward' ? 'vux-header-fade-in-right' : 'vux-header-fade-in-left'
       },
       componentName () {
-        const parts = this.route.path.split('/')
-        if (/component/.test(this.route.path) && parts[2]) return parts[2]
-      },
-      isDemo () {
-        return /component|demo/.test(this.route.path)
-      },
-      isTabbarDemo () {
-        return /tabbar/.test(this.route.path)
+        return "111";
       },
       title () {
-        if (this.route.path === '/') return 'Home'
-        if (this.route.path === '/project/donate') return 'Donate'
-        if (this.route.path === '/demo') return 'Demo list'
+        if (this.$route.path === '/') return 'Home'
+        if (this.$route.path === '/project/donate') return 'Donate'
+        if (this.$route.path === '/demo') return 'Demo list'
         return this.componentName ? `Demo/${this.componentName}` : 'Demo/~~'
       }
     }

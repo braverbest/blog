@@ -8,7 +8,7 @@
     <!--<cell title="Vux" value="Cool" is-link></cell>-->
   <!--</group>-->
   <tabbar class="vux-demo-tabbar" icon-class="vux-center"  slot="bottom">
-    <tabbar-item v-link="{path:'/'}" :selected="route.path === '/'">
+    <tabbar-item v-link="{path:'/'}" :selected="$route.path === '/'">
       <span class="demo-icon-22 vux-demo-tabbar-icon-home" slot="icon">&#xe637;</span>
       <span slot="label">Home</span>
     </tabbar-item>
@@ -16,7 +16,7 @@
       <span class="demo-icon-22" slot="icon">&#xe633;</span>
       <span slot="label"><span v-if="componentName" class="vux-demo-tabbar-component">{{componentName}}</span><span v-else>Demos</span></span>
     </tabbar-item>
-    <tabbar-item v-link="{path:'/'}" :selected="route.path === '/'" show-dot>
+    <tabbar-item v-link="{path:'/'}" :selected="$route.path === '/'" show-dot>
       <span class="demo-icon-22" slot="icon">&#xe630;</span>
       <span slot="label">Donate2</span>
     </tabbar-item>

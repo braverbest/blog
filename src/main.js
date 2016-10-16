@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import Home from './components/HelloFromVux'
+import Home from './components/Home'
 import BlogDetail from './components/BlogDetail'
 import PersonalInfo from './components/PersonalInfo'
 import VueRouter from 'vue-router'
@@ -12,6 +12,20 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   transitionOnLoad: false
+  // routes:[
+  //   {
+  //     path:'/',
+  //     component: Home
+  //   },
+  //   {
+  //     path:'/blog',
+  //     component: BlogDetail
+  //   },
+  //   {
+  //     path:'/personalinfo',
+  //     component: PersonalInfo
+  //   }
+  // ]
 })
 
 import { sync } from 'vuex-router-sync'
@@ -52,15 +66,38 @@ sync(store, router)
 
 router.map({
   '/': {
-    component: Home
+    component: Home,
+    name:'/'
   },
   '/blog':{
-    component:BlogDetail
+    component:BlogDetail,
+    name:'blog'
   },
   '/personalinfo':{
-    component:PersonalInfo
+    component:PersonalInfo,
+    name:'person'
   }
 })
+
+// router.beforeEach(function (transition) {
+//   if (/\/http/.test(transition.to.path)) {
+//     let url = transition.to.path.split('http')[1]
+//     window.location.href = `http${url}`
+//   } else {
+//     router.go({
+//       path:router
+//     })
+//     // if (/\/demo\/component\/\w+/.test(transition.to.path)) {
+//     //   router.go({
+//     //     replace: true,
+//     //     path: transition.to.path.replace('/demo', ''),
+//     //     append: false
+//     //   })
+//     // } else {
+//     //   transition.next()
+//     // }
+//   }
+// })
 
 if(module.hot) {
   module.hot.accept();
